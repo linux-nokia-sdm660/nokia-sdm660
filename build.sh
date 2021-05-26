@@ -63,12 +63,17 @@ cd "$TMPDOWN"
         [ -d libufdt ] || git clone https://android.googlesource.com/platform/system/libufdt -b pie-gsi --depth 1
         [ -d dtc ] || git clone https://android.googlesource.com/platform/external/dtc -b pie-gsi --depth 1
     fi
+
+    [ -d misc ] || git clone https://android.googlesource.com/platform/prebuilts/misc -b android10-gsi
+
     ls .
 cd "$HERE"
 
 if [ -n "$deviceinfo_kernel_apply_overlay" ] && $deviceinfo_kernel_apply_overlay; then
     "$SCRIPT/build-ufdt-apply-overlay.sh" "${TMPDOWN}"
 fi
+
+export DTC_EXT="$TMPDOWN/misc/linux-x86/dtc/dtc"
 
 if [ -n "$deviceinfo_kernel_clang_compile" ] && $deviceinfo_kernel_clang_compile; then
     CC=clang \
