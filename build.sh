@@ -53,7 +53,6 @@ cd "$TMPDOWN"
     GCC_ARM32_PATH="$TMPDOWN/arm-linux-androideabi-4.9"
 
     KERNEL_DIR="$(basename "${deviceinfo_kernel_source}")"
-    KERNEL_DIR="${KERNEL_DIR%.*}"
     [ -d "$KERNEL_DIR" ] || git clone "$deviceinfo_kernel_source" -b $deviceinfo_kernel_source_branch --depth 1
 
     [ -f halium-boot-ramdisk.img ] || curl --location --output halium-boot-ramdisk.img \
