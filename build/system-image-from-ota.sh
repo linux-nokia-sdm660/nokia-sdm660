@@ -180,7 +180,7 @@ do
                 system)
                     FULL_IMAGE=1
                     rm -f "$OUT/rootfs.img"
-                    dd if=/dev/zero of="$OUT/rootfs.img" seek=750K bs=4096 count=0
+                    dd if=/dev/zero of="$OUT/rootfs.img" seek=655360 bs=4096 count=0
                     mkfs.ext4 -F "$OUT/rootfs.img"
                 ;;
 
