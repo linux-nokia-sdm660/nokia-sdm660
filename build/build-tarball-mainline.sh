@@ -14,5 +14,13 @@ if [ ! -f "$dir/partitions/recovery.img" ]; then
 #exit 1
 fi
 
-tar -cJf "$output/device_"$device".tar.xz" -C $dir partitions/ system/
+TAR_EXTRA_OPTIONS=""
+if [ "$TARGET_DISTRO" == "focal" ]; then
+    TAR_EXTRA_OPTIONS="--transform=s,^system/lib,system/usr/lib,"
+fi
+
+tar -cJf "$output/device_"$device".tar.xz" \
+    --owner=:0 --group=:0 --mode='go-w' \
+    $TAR_EXTRA_OPTIONS \
+    -C $dir partitions/ system/
 echo "$(date +%Y%m%d)-$RANDOM" > "$output/device_"$device".tar.build"
