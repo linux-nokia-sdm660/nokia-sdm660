@@ -16,8 +16,8 @@ OUTPUT="$2"
 mkdir -p "$OUTPUT" || true
 
 download_file_and_asc() {
-    wget -cq "$1" -P "$2"
-    wget -cq "$1.asc" -P "$2"
+    wget -c -q "$1" -P "$2"
+    wget -c -q "$1.asc" -P "$2"
 }
 
 # Downloads master and signing keyrings
@@ -36,7 +36,7 @@ EOF
 
 # Download and prepare rootfs
 file=$(basename "$ROOTFS_URL")
-wget -ncq "$ROOTFS_URL" -P "$OUTPUT"
+wget -nc -q "$ROOTFS_URL" -P "$OUTPUT"
 mkdir -p "$OUTPUT/rootfs/system"
 cd "$OUTPUT/rootfs"
 sudo tar xpzf "../$file" --numeric-owner -C system
@@ -58,7 +58,7 @@ echo "update $file $file.asc" >> "$OUTPUT/ubuntu_command"
 
 # Device-generic tarball (Halium GSI)
 file=$(basename "$DEVICE_GENERIC_URL")
-wget -ncq "$DEVICE_GENERIC_URL" -P "$OUTPUT"
+wget -nc -q "$DEVICE_GENERIC_URL" -P "$OUTPUT"
 touch "$OUTPUT/$file.asc"
 echo "update $file $file.asc" >> "$OUTPUT/ubuntu_command"
 

@@ -11,8 +11,8 @@ OUTPUT="$3"
 mkdir -p "$OUTPUT" || true
 
 download_file_and_asc() {
-    wget "$1" -P "$2"
-    wget "$1.asc" -P "$2"
+    wget -q "$1" -P "$2"
+    wget -q "$1.asc" -P "$2"
 }
 
 # Gets the latest image from the system-image server
