@@ -1,0 +1,8 @@
+.debhelper/
+debian/changelog
+debian/debhelper-build-stamp
+debian/files
+debian/linux-bootimage*
+debian/linux-headers*
+debian/linux-image*
+debian/path-override/
